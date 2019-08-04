@@ -109,6 +109,9 @@ int main()
 				q.push_back(q1+'0');
 				if(pos<n)
 				{r.push_back(a[pos]);}
+				int j=0;
+				for(;j<r.length();j++)if(r[j]!='0')break;
+				if(j==r.length())r="0";
 				pos++;
 			}
 			cout<<q<<endl;
