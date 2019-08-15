@@ -29,7 +29,7 @@ int AddFirst(int x1, int y1)
 
 int DelFirst()
 {
-	if(start==NULL)return 0;
+	if(start==NULL){cout<<-1<<endl;return 0;}
 	struct node* temp=start;
 	start=temp->ptr;
 	free(temp);
@@ -38,7 +38,7 @@ int DelFirst()
 
 int Del(int x1, int y1)
 {
-	if(start==NULL)return 0;
+	if(start==NULL){cout<<-1<<endl;return 0;}
 	
 	if(start->x==x1&&start->y==y1)
 	{
@@ -59,19 +59,22 @@ int Del(int x1, int y1)
 		prev=temp;
 		temp=temp->ptr;
 	}
-	if(temp==NULL)return -1;
+	if(temp==NULL){cout<<-1<<endl;return 0;}
 	//return 0;
 }
 
 void Search(float d)
 {
 	struct node* temp=start;
+	int c=0;
 	while(temp!=NULL)
 	{
 		int dist=(temp->x)*(temp->x)+(temp->y)*(temp->y);
-		if(dist<=d*d){cout<<"("<<temp->x<<", "<<temp->y<<") ";}
+		if(dist<=d*d){c++;}
 		temp=temp->ptr;
 	}
+	if(c==0)cout<<-1<<endl;
+	else {cout<<c<<endl;}
 }
 
 bool Search_pt(int x1, int y1)
@@ -124,7 +127,7 @@ int main()
 			float f;
 			cin>>f;
 			Search(f);
-			cout<<endl;
+			
 		}
 		else if(a==5)	
 		{
