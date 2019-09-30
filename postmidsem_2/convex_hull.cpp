@@ -79,7 +79,7 @@ void convexhull(point pt[], int n)
 		m++;
 	}
 
-	if(m<3)return;
+	if(m<3){cout<<"Convex Hull not possible"<<endl;return;}
 
 	stack <point> s;
 	s.push(pg);
