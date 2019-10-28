@@ -54,7 +54,7 @@ int main()
 		adj[a-1].push_back(b-1);
 		adj[b-1].push_back(a-1);
 	}
-	if(bip(adj, n))cout<<"Graph is bipartite"<<endl;
-	else cout<<"Graph is not bipartite"<<endl;
+	if(bip(adj, n))cout<<"YES"<<endl;
+	else cout<<"NO"<<endl;
 	return 0;
 }
