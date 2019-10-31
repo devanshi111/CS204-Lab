@@ -1,60 +1,54 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-bool bip(vector<vector <int>> v, int n)
+bool bipartite(vector <vector<int>> v,int src ,int * colour)
 {
-	bool vis[n]={0};
-	queue <int> q;
-	int col[n]={0};
-	for (int i=0;i<n;++i)
+	bool flag =1;
+	
+	for(int i=0;i<v[src].size();i++)
 	{
-		//q.push(i);
-		//q.pop();
-		if(vis[i])continue;
-		else
+		if(colour[v[src][i]]==0)
 		{
-			col[i]=1;
-			for (int j=0;j<v[i].size();++j)
-			{
-				if(col[v[i][j]]==col[i])return false;
-				col[v[i][j]]=0-col[i];
-				q.push(v[i][j]);
-			}
-			vis[i]=1;
+			colour[v[src][i]]=0-colour[src];
+			flag=flag&bipartite(v,i ,colour);
 		}
-		while(!q.empty())
+		else if((colour[v[src][i]]==1&&colour[src]==1)||(colour[v[src][i]]==-1&&colour[src]==-1))
 		{
-			int u=q.front();
-			q.pop();
-			if(vis[u])continue;
-			else
-			{
-			for (int j=0;j<v[i].size();++j)
-			{
-				if(col[v[u][j]]==col[u])return false;
-				col[v[u][j]]=0-col[u];
-				q.push(v[u][j]);
-			}
-			vis[u]=1;
-		}
+			return 0;
 		}
 	}
-	return true;
+		
+		return flag;
 }
 
 int main()
 {
-	int n, m;
+
+	long long int n, m;
 	cin>>n>>m;
-	vector <vector <int>> adj(n);
-	for (int i=0;i<m;++i)
+	vector <vector<int>> adj(n);
+	for(int i=0;i<m;i++)
 	{
-		int a, b;
+		int a,b;
 		cin>>a>>b;
 		adj[a-1].push_back(b-1);
 		adj[b-1].push_back(a-1);
 	}
-	if(bip(adj, n))cout<<"YES"<<endl;
+
+	int colour[n]={0};
+	bool ans=1;
+	for(int i=0;i<n;i++)
+	{
+		if(colour[i]==0)
+		{
+			colour[i]=1;
+		    ans=bipartite(adj,i,colour);
+
+		}
+		if(ans==0)break;
+	}
+
+	if(ans) cout<<"YES"<<endl;
 	else cout<<"NO"<<endl;
 	return 0;
 }
