@@ -173,6 +173,16 @@ struct node* deleteNode(node* root, int key)
     }
 }
 
+void inorder(struct node* root)
+{
+	if(root!=NULL)
+	{
+		inorder(root->left);
+		cout<<root->key<<" ";
+		inorder(root->right);
+	}	
+}
+
 int main()
 {
 	int n;
