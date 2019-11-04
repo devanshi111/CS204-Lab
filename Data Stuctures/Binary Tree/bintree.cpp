@@ -62,7 +62,7 @@ int main()
     root->right->left = new node(16);
     root->right->right = new node(25);
 
-    cout << "The height of the binary tree is " << height(root);
+    cout << "The height of the binary tree is " << height(root)<<endl;
 
     return 0;
 }
