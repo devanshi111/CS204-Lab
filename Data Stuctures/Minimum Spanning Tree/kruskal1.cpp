@@ -23,7 +23,7 @@ void union1(long long int x, long long int y, long long int* id)
 long long kruskal(pair<long long, pair<long long int, long long int> > p[], long long int e, long long int* id)
 {
     long long int x, y;
-    long long cost, minCost = 1;
+    long long cost, minCost = 0;
     for(long long int i = 0;i < e;++i)
     {
         x = p[i].second.first;
@@ -32,6 +32,7 @@ long long kruskal(pair<long long, pair<long long int, long long int> > p[], long
 
         if(setRep(id, x) != setRep(id, y))
         {
+        	cout<<x+1<<" "<<y+1<<" "<<cost<<endl;
             minCost += cost;
             union1(x, y, id);
         }    
@@ -57,6 +58,7 @@ int main()
     }
     
     sort(p, p + e);
+    cout<<endl;
     minCost = kruskal(p, e, id);
     cout << minCost << endl;
     return 0;
